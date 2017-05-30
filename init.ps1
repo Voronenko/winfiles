@@ -11,13 +11,12 @@ $olddir="~/winfiles_old" # old winfiles backup directory
 
 $files="aliases components components-nuget components-shell exports functions Microsoft.PowerShell_profile NuGet_profile profile"
 $components="console git visualstudio"
-$dotfiles="gitconfig jshintrc jscsrc editorconfig hgrc"
+$dotfiles="gitconfig gemrc jshintrc jscsrc editorconfig hgrc"
 
 New-Item -ItemType Directory -Force -Path $oldfiles
 New-Item -ItemType Directory -Force -Path $oldfiles\components
 New-Item -ItemType Directory -Force -Path $oldfiles\home
 New-Item -ItemType Directory -Force -Path $profileDir\components
-New-Item -ItemType Directory -Force -Path $profileDir\home
 
 $profileExist = Test-Path $profile
 
@@ -35,8 +34,8 @@ if (!$profileExist) {
   }
 
   $dotfiles.Split(" ") | ForEach {
-    if (Test-Path $profileDir\home\.$_) { Copy-Item $profileDir\home\.$_ $oldfiles\home }
-    New-Item -Path $profileDir\home\.$_ -ItemType SymbolicLink -Value $dir\home\$_
+    if (Test-Path C:\Users\$username\.$_) { Copy-Item C:\Users\$username\.$_ $oldfiles\home }
+    New-Item -Path C:\Users\$username\.$_ -ItemType SymbolicLink -Value $dir\home\$_
   }
 
 
