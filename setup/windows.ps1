@@ -16,7 +16,7 @@ Write-Host "Configuring System..." -ForegroundColor "Yellow"
 ## Set DisplayName for my account. Use only if you are not using a Microsoft Account
 #$myIdentity=[System.Security.Principal.WindowsIdentity]::GetCurrent()
 #$user = Get-WmiObject Win32_UserAccount | Where {$_.Caption -eq $myIdentity.Name}
-#$user.FullName = "Jay Harris
+#$user.FullName = "Vyacheslav Voronenko"
 #$user.Put() | Out-Null
 #Remove-Variable user
 #Remove-Variable myIdentity
@@ -142,9 +142,9 @@ Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config" "Au
 Write-Host "Configuring Explorer, Taskbar, and System Tray..." -ForegroundColor "Yellow"
 
 # Ensure necessary registry paths
-# if (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Type Folder | Out-Null}
-# if (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState")) {New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState" -Type Folder | Out-Null}
-# if (!(Test-Path "HKLM:\Software\Policies\Microsoft\Windows\Windows Search")) {New-Item -Path "HKLM:\Software\Policies\Microsoft\Windows\Windows Search" -Type Folder | Out-Null}
+if (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer")) {New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" -Type Folder | Out-Null}
+if (!(Test-Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState")) {New-Item -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState" -Type Folder | Out-Null}
+if (!(Test-Path "HKLM:\Software\Policies\Microsoft\Windows\Windows Search")) {New-Item -Path "HKLM:\Software\Policies\Microsoft\Windows\Windows Search" -Type Folder | Out-Null}
 
 # Explorer: Show hidden files by default: Show Files: 1, Hide Files: 2
 Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "Hidden" 1
@@ -159,7 +159,7 @@ Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Cabin
 Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" "DisableThumbnailsOnNetworkFolders" 1
 
 # Taskbar: Enable small icons
-# Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarSmallIcons" 1
+Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "TaskbarSmallIcons" 1
 
 # Taskbar: Don't show Windows Store Apps on Taskbar
 # Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" "StoreAppsOnTaskbar" 0
@@ -178,7 +178,7 @@ Set-ItemProperty "HKLM:\Software\Policies\Microsoft\Windows\Windows Search" "All
 # Set-ItemProperty "HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" "HideSCAPower" 1  # Power
 
 # Taskbar: Show colors on Taskbar, Start, and SysTray: Disabled: 0, Taskbar, Start, & SysTray: 1, Taskbar Only: 2
-# Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" "ColorPrevalence" 1
+Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" "ColorPrevalence" 1
 
 # Titlebar: Disable theme colors on titlebar
 # Set-ItemProperty "HKCU:\SOFTWARE\Microsoft\Windows\DWM" "ColorPrevalence" 0
@@ -452,49 +452,49 @@ Remove-Variable diskCleanupRegPath
 Write-Host "Configuring Console..." -ForegroundColor "Yellow"
 
 # Make 'Source Code Pro' an available Console font
-# Set-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont' 000 'Source Code Pro'
+Set-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Console\TrueTypeFont' 000 'Source Code Pro'
 
 # Create custom path for PSReadLine Settings
-# if (!(Test-Path "HKCU:\Console\PSReadLine")) {New-Item -Path "HKCU:\Console\PSReadLine" -Type Folder | Out-Null}
+if (!(Test-Path "HKCU:\Console\PSReadLine")) {New-Item -Path "HKCU:\Console\PSReadLine" -Type Folder | Out-Null}
 
 # PSReadLine: Normal syntax color. vim Normal group. (Default: Foreground)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "NormalForeground" 0xF
+Set-ItemProperty "HKCU:\Console\PSReadLine" "NormalForeground" 0xF
 
 # PSReadLine: Comment Token syntax color. vim Comment group. (Default: 0x2)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "CommentForeground" 0x7
+Set-ItemProperty "HKCU:\Console\PSReadLine" "CommentForeground" 0x7
 
 # PSReadLine: Keyword Token syntax color. vim Statement group. (Default: 0xA)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "KeywordForeground" 0x1
+Set-ItemProperty "HKCU:\Console\PSReadLine" "KeywordForeground" 0x1
 
 # PSReadLine: String Token syntax color. vim String [or Constant] group. (Default: 0x3)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "StringForeground"  0xA
+Set-ItemProperty "HKCU:\Console\PSReadLine" "StringForeground"  0xA
 
 # PSReadLine: Operator Token syntax color. vim Operator [or Statement] group. (Default: 0x8)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "OperatorForeground" 0xB
+Set-ItemProperty "HKCU:\Console\PSReadLine" "OperatorForeground" 0xB
 
 # PSReadLine: Variable Token syntax color. vim Identifier group. (Default: 0xA)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "VariableForeground" 0xB
+Set-ItemProperty "HKCU:\Console\PSReadLine" "VariableForeground" 0xB
 
 # PSReadLine: Command Token syntax color. vim Function [or Identifier] group. (Default: 0xE)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "CommandForeground" 0x1
+Set-ItemProperty "HKCU:\Console\PSReadLine" "CommandForeground" 0x1
 
 # PSReadLine: Parameter Token syntax color. vim Normal group. (Default: 0x8)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "ParameterForeground" 0xF
+Set-ItemProperty "HKCU:\Console\PSReadLine" "ParameterForeground" 0xF
 
 # PSReadLine: Type Token syntax color. vim Type group. (Default: 0x7)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "TypeForeground" 0xE
+Set-ItemProperty "HKCU:\Console\PSReadLine" "TypeForeground" 0xE
 
 # PSReadLine: Number Token syntax color. vim Number [or Constant] group. (Default: 0xF)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "NumberForeground" 0xC
+Set-ItemProperty "HKCU:\Console\PSReadLine" "NumberForeground" 0xC
 
 # PSReadLine: Member Token syntax color. vim Function [or Identifier] group. (Default: 0x7)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "MemberForeground" 0xE
+Set-ItemProperty "HKCU:\Console\PSReadLine" "MemberForeground" 0xE
 
 # PSReadLine: Emphasis syntax color. vim Search group. (Default: 0xB)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "EmphasisForeground" 0xD
+Set-ItemProperty "HKCU:\Console\PSReadLine" "EmphasisForeground" 0xD
 
 # PSReadLine: Error syntax color. vim Error group. (Default: 0xC)
-# Set-ItemProperty "HKCU:\Console\PSReadLine" "ErrorForeground" 0x4
+Set-ItemProperty "HKCU:\Console\PSReadLine" "ErrorForeground" 0x4
 
 @(`
 "HKCU:\Console\%SystemRoot%_System32_bash.exe",`
