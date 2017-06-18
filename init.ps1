@@ -10,15 +10,20 @@ $profileDir="C:\Users\$username\Documents\WindowsPowerShell"
 $olddir="~/winfiles_old" # old winfiles backup directory
 
 $files="aliases components components-nuget components-shell exports functions Microsoft.PowerShell_profile NuGet_profile profile"
+
+#
 $components="console git visualstudio"
 $dotfiles="gitconfig gemrc jshintrc jscsrc editorconfig hgrc"
+$roamingfiles="conemu\conemu.xml"
 
 New-Item -ItemType Directory -Force -Path $oldfiles
 New-Item -ItemType Directory -Force -Path $oldfiles\components
 New-Item -ItemType Directory -Force -Path $oldfiles\home
 New-Item -ItemType Directory -Force -Path $profileDir\components
+New-Item -ItemType Directory -Force -Path $oldfiles\roaming
+New-Item -ItemType Directory -Force -Path $oldfiles\roaming\conemu
 
-$profileExist = Test-Path $profile
+$profileExist = False # Test-Path $profile
 
 if (!$profileExist) {
 
@@ -38,5 +43,9 @@ if (!$profileExist) {
     New-Item -Path C:\Users\$username\.$_ -ItemType SymbolicLink -Value $dir\home\$_
   }
 
+  $roamingfiles.Split(" ") | ForEach {
+    if (Test-Path C:\Users\$username\AppData\Roaming\$_) { Copy-Item C:\Users\$username\AppData\Roaming\$_ $oldfiles\roaming }
+    New-Item -Path C:\Users\$username\AppData\Roaming\$_ -ItemType SymbolicLink -Value $dir\$_
+  }
 
 } 
