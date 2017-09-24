@@ -6,4 +6,8 @@ Push-Location (Join-Path (Split-Path -parent $profile) "components")
 . .\visualstudio.ps1
 . .\console.ps1
 
+if (((Get-Command git -ErrorAction SilentlyContinue) -ne $null) -and (Get-Module -ListAvailable -Name z )) {
+  Import-Module z
+}
+
 Pop-Location
