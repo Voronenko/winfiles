@@ -33,6 +33,7 @@ if ((which cinst) -eq $null) {
 Write-Host "Installing PowerShell Modules..." -ForegroundColor "Yellow"
 Install-Module Posh-Git -Scope CurrentUser -Force
 Install-Module PSWindowsUpdate -Scope CurrentUser -Force
+Install-Module z -AllowClobber -Scope CurrentUser -Force
 
 # system and cli
 choco install curl                --limit-output
