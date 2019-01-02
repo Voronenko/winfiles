@@ -33,6 +33,10 @@ if (!(Verify-Elevated)) {
 
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
+Write-Host "Refreshing environment" -ForegroundColor "Yellow"
+
 Refresh-Environment
+
+Write-Host "Choco installing main components" -ForegroundColor "Yellow"
 
 choco install git.install
