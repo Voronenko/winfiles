@@ -3,7 +3,7 @@ $msifile= 'c:\PowerShell-6.1.1-win-x86.msi'
 $arguments= '' 
 
 $client = New-Object System.Net.WebClient
-$client.DownloadFile($link, $msifile)
+$client.DownloadFile($msilink, $msifile)
 
 Start-Process `
      -file  $msifile `
