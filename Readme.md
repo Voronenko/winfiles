@@ -44,3 +44,9 @@ For new windows box
 ConfigureRemotingForAnsible.ps1 , example:
 
 `powershell.exe -File ConfigureRemotingForAnsible.ps1 -SkipNetworkProfileCheck  -EnableCredSSP -CertValidityDays 3650`
+
+Check powershell version
+
+```ps
+$PSVersionTable.PSVersion
+````
