@@ -52,9 +52,14 @@ Write-Host "Cloning winfiles..." -ForegroundColor "Yellow"
 
 If (Test-Path c:\batch\winfiles\) {
     Write-Host "repo c:\batch\winfiles\ already exists" -ForegroundColor "Yellow"
+    cd c:\batch\winfiles\
+    git pull
 }
 Else {
     Write-Host "git clone https://github.com/Voronenko/winfiles.git c:\batch\winfiles\" -ForegroundColor "Yellow"
-    git clone git clone https://github.com/Voronenko/winfiles.git c:\batch\winfiles\
+    git clone https://github.com/Voronenko/winfiles.git c:\batch\winfiles\
 }
 
+# todo: detect if gui present
+
+choco install far
