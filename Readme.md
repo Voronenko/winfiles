@@ -38,3 +38,9 @@ For new windows box
 * Install Python 2.7.9
 * Configure host for ASP.NET development
 
+
+# Configuring for ansible remote provisioning
+
+ConfigureRemotingForAnsible.ps1 , example:
+
+`powershell.exe -File ConfigureRemotingForAnsible.ps1 -SkipNetworkProfileCheck  -EnableCredSSP -CertValidityDays 3650`
