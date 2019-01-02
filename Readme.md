@@ -7,6 +7,36 @@ It is recommended to install under admin powershell
 
 So, to recap, 
 
+# If it is remote box, but you have initial ps shell
+
+```ps
+
+Set-ExecutionPolicy Bypass -Scope Process -Force; 
+iex ((New-Object System.Net.WebClient).DownloadString('https://bit.ly/winfiles'))
+
+```
+
+`https://bit.ly/winfiles` -> `https://raw.githubusercontent.com/Voronenko/winfiles/master/bootstrap.ps1`
+
+Then proceed usually or unusually using cloned repo in `c:\batch\winfiles`
+
+
+# Some facts on your box
+
+Installed powershell version
+
+```ps
+$PSVersionTable.PSVersion
+````
+
+Get box network addresses
+
+```ps
+
+(Get-NetIPAddress).IPAddress
+
+```
+
 # init.ps1
 
 the `./init.ps1` script will:
@@ -37,22 +67,6 @@ For new windows box
 * Activate nvm (+ npm gulp node-inspector yarn)
 * Install Python 2.7.9
 * Configure host for ASP.NET development
-
-# Some facts on new box
-
-Check powershell version
-
-```ps
-$PSVersionTable.PSVersion
-````
-
-Get box network addresses
-
-```ps
-
-(Get-NetIPAddress).IPAddress
-
-```
 
 # Configuring for ansible remote provisioning
 
