@@ -37,6 +37,24 @@ Write-Host "Refreshing environment" -ForegroundColor "Yellow"
 
 Refresh-Environment
 
+choco feature enable -n=allowGlobalConfirmation
+
 Write-Host "Choco installing main components" -ForegroundColor "Yellow"
 
 choco install git.install
+
+# todo:   https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-6&viewFallbackFrom=powershell-5
+
+# / here will be ssh based winrm
+
+
+Write-Host "Cloning winfiles..." -ForegroundColor "Yellow"
+
+If (Test-Path c:\batch\winfiles\) {
+    Write-Host "repo c:\batch\winfiles\ already exists" -ForegroundColor "Yellow"
+}
+Else {
+    Write-Host "git clone https://github.com/Voronenko/winfiles.git c:\batch\winfiles\" -ForegroundColor "Yellow"
+    git clone git clone https://github.com/Voronenko/winfiles.git c:\batch\winfiles\
+}
+
