@@ -43,9 +43,11 @@ Write-Host "Choco installing main components" -ForegroundColor "Yellow"
 
 choco install git.install
 
-Write-Host "Refreshing environment for git using choco Update-SessionEnvironment" -ForegroundColor "Yellow"
+Write-Host "Refreshing environment for git with Pause" -ForegroundColor "Yellow"
 
-refreshenv
+Start-Sleep -seconds 10
+
+Refresh-Environment
 
 Write-Host "Cloning winfiles..." -ForegroundColor "Yellow"
 
