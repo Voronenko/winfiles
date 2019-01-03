@@ -43,10 +43,7 @@ Write-Host "Choco installing main components" -ForegroundColor "Yellow"
 
 choco install git.install
 
-# todo:   https://docs.microsoft.com/en-us/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-6&viewFallbackFrom=powershell-5
-
-# / here will be ssh based winrm
-
+Refresh-Environment
 
 Write-Host "Cloning winfiles..." -ForegroundColor "Yellow"
 
