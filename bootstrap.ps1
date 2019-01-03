@@ -64,3 +64,16 @@ Else {
 # todo: detect if gui present
 
 choco install far
+
+# Extra
+
+$reply = Read-Host -Prompt "Configure for ansible winrm ? [y/n]"
+if ( $reply -match "[yY]" ) { 
+    iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Voronenko/winfiles/master/setup/ConfigureRemotingForAnsible.ps1'))
+}
+
+$reply = Read-Host -Prompt "Configure for winrm over ssh (installs OpenSSH server software and upgrades powershell to 6.0.x) ? [y/n]"
+if ( $reply -match "[yY]" ) {
+    iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Voronenko/winfiles/master/setup/GetPowershell6LinuxRemoting.ps1'))
+}
+
