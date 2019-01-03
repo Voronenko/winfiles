@@ -2,6 +2,7 @@ choco install pwsh
 choco install openssh -params '"/SSHServerFeature"' -y
 choco install curl
 choco install sed
+choco install jq
 refreshenv
 
 New-Item -Path c:\pwsh -ItemType SymbolicLink -Value "C:\Program Files\PowerShell\6" -force
