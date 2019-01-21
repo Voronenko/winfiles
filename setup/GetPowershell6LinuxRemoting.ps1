@@ -22,12 +22,12 @@ Write-Host "Choring C:\ProgramData\ssh\sshd_config" -ForegroundColor "Yellow"
 
 $powershellSubsystemInstead = @"
 Subsystem   sftp    sftp-server.exe
-"
+"@
 
 $powershellSubsystemUse = @"
 Subsystem   sftp    sftp-server.exe
 Subsystem   powershell  c:\pwsh\pwsh.exe -sshs -NoLogo -NoProfile
-"
+"@
 
 Write-Host "Enabling Subsystem   powershell" -ForegroundColor "Yellow"
 
