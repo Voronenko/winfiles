@@ -20,10 +20,24 @@ cmd.exe /c curl -l https://api.github.com/users/voronenko/keys | jq -r '.[].key'
 
 Write-Host "Choring C:\ProgramData\ssh\sshd_config" -ForegroundColor "Yellow"
 
+$powershellSubsystemInstead = @"
+Subsystem   sftp    sftp-server.exe
+"
+
+$powershellSubsystemUse = @"
+Subsystem   sftp    sftp-server.exe
+Subsystem   powershell  c:\pwsh\pwsh.exe -sshs -NoLogo -NoProfile
+"
+
+Write-Host "Enabling Subsystem   powershell" -ForegroundColor "Yellow"
+
+$sshd_configContent = Get-Content C:\ProgramData\ssh\sshd_config -Raw -Encoding ASCII
+$sshd_configContentAmended = $sshd_configContent -replace $powershellSubsystemInstead, $powershellSubsystemUse
+Set-Content -Path C:\ProgramData\ssh\sshd_config -Encoding ASCII -Value $sshd_configContentAmended
+
 $configChore = @"
 PasswordAuthentication yes
 PubkeyAuthentication yes
-Subsystem powershell c:\pwsh\pwsh.exe -sshs -NoLogo -NoProfile
 "@
 
 Add-Content C:\ProgramData\ssh\sshd_config -Encoding ASCII -Value $configChore
