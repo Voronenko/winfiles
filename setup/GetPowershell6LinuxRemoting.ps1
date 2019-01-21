@@ -21,12 +21,12 @@ cmd.exe /c curl -l https://api.github.com/users/voronenko/keys | jq -r '.[].key'
 Write-Host "Choring C:\ProgramData\ssh\sshd_config" -ForegroundColor "Yellow"
 
 $powershellSubsystemInstead = @"
-Subsystem   sftp    sftp-server.exe
+Subsystem	sftp	sftp-server.exe
 "@
 
 $powershellSubsystemUse = @"
-Subsystem   sftp    sftp-server.exe
-Subsystem   powershell  c:\pwsh\pwsh.exe -sshs -NoLogo -NoProfile
+Subsystem	sftp	sftp-server.exe
+Subsystem	powershell	c:\pwsh\pwsh.exe -sshs -NoLogo -NoProfile
 "@
 
 Write-Host "Enabling Subsystem   powershell" -ForegroundColor "Yellow"
