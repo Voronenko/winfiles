@@ -1,3 +1,7 @@
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
+$PSDefaultParameterValues['*:ErrorAction']='Stop'
+
 choco install pwsh
 choco install openssh -params '"/SSHServerFeature"' -y
 choco install curl
