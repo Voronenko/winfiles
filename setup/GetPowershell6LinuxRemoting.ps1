@@ -3,7 +3,7 @@ $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:ErrorAction']='Stop'
 
 choco install pwsh
-choco install openssh -params '"/SSHServerFeature"' -y
+choco install openssh -params '"/SSHServerFeature /KeyBasedAuthenticationFeature"' -y
 choco install curl
 choco install sed
 choco install jq
