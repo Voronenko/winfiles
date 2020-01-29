@@ -13,7 +13,7 @@ New-Item -Path c:\pwsh -ItemType SymbolicLink -Value "C:\Program Files\PowerShel
 
 Write-Host "Initializing authorized keys" -ForegroundColor "Yellow"
 
-cd $env:USERPROFILE; New-Item -ItemType Directory -Force -Path .ssh; cd .ssh; New-Item authorized_keys
+cd $env:USERPROFILE; New-Item -ItemType Directory -Force -Path .ssh; cd .ssh; New-Item authorized_keys -Force
 cmd.exe /c curl -l https://api.github.com/users/voronenko/keys | jq -r '.[].key' > $HOME/.ssh/authorized_keys
 # tune sshd_config, if needed
 #cmd.exe /c curl -l https://raw.githubusercontent.com/voronenko-p/win-gitlab-runner/master/sshd_config > C:\ProgramData\ssh\sshd_config
