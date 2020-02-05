@@ -13,7 +13,7 @@ $files="aliases components components-nuget components-shell exports functions M
 
 #
 $components="console git visualstudio"
-$dotfiles="gitconfig gemrc jshintrc jscsrc editorconfig hgrc"
+$dotfiles="gitconfig gitattributes gemrc jshintrc jscsrc editorconfig hgrc"
 $roamingfiles="conemu.xml"
 
 New-Item -ItemType Directory -Force -Path $oldfiles

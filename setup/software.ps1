@@ -9,8 +9,8 @@ if (!(Verify-Elevated)) {
 }
 
 ### Update Help for Modules
-Write-Host "Updating Help..." -ForegroundColor "Yellow"
-Update-Help -Force
+#Write-Host "Updating Help..." -ForegroundColor "Yellow"
+#Update-Help -Force
 
 
 ### Package Providers
@@ -36,7 +36,9 @@ Install-Module PSWindowsUpdate -Scope CurrentUser -Force
 Install-Module z -AllowClobber -Scope CurrentUser -Force
 
 # system and cli
+choco install conemu              --limit-output
 choco install curl                --limit-output
+choco install which               --limit-output
 choco install nuget.commandline   --limit-output
 choco install webpi               --limit-output
 choco install git.install         --limit-output -params '"/GitAndUnixToolsOnPath /NoShellIntegration"'
@@ -45,6 +47,7 @@ choco install ruby                --limit-output
 
 # browsers
 choco install GoogleChrome        --limit-output
+choco install microsoft-edge      --limit-output
 # choco install GoogleChrome.Canary --limit-output
 # choco install Firefox             --limit-output
 # choco install Opera               --limit-output
