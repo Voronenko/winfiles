@@ -2,7 +2,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $PSDefaultParameterValues['*:ErrorAction']='Stop'
 
-choco install pwsh
+choco install pwsh --version=6.1.2
 choco install openssh -params '"/SSHServerFeature /KeyBasedAuthenticationFeature"' -y
 choco install curl
 choco install sed
