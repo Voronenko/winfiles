@@ -45,3 +45,5 @@ Add-Content C:\ProgramData\ssh\sshd_config -Encoding ASCII -Value $configChore
 Write-Host "Restarting sshd" -ForegroundColor "Yellow"
 
 Restart-Service sshd
+
+Write-Host "Powershell 6 ssh for Linux Remoting was successfully configured." -ForegroundColor "Yellow"
