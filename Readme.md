@@ -10,7 +10,7 @@ So, to recap,
 # If it is remote box, but you have initial ps shell
 
 ```ps
-
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Set-ExecutionPolicy Bypass -Scope Process -Force; 
 iex ((New-Object System.Net.WebClient).DownloadString('https://bit.ly/winfiles'))
 
@@ -77,7 +77,7 @@ ConfigureRemotingForAnsible.ps1 , example:
 or 
 
 ```ps
-
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://bit.ly/ansible_remoting'))
 
 ```
@@ -85,7 +85,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 or
 
 ```ps
-
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/Voronenko/winfiles/master/setup/ConfigureRemotingForAnsible.ps1'))
 
 ```
