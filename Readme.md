@@ -218,4 +218,12 @@ Now,
 
 ```
 ssh slavko@windows2016eval
+
+Microsoft Windows [Version 10.0.17763.379]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+slavko@MSEDGEWIN10 C:\Users\Slavko>
+
 ```
+
+We are set
