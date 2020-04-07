@@ -2,16 +2,16 @@ winfiles
 ========
 
 My windows environment. Multi-phase install with optional steps.
-It is recommended to install under admin powershell 
+It is recommended to install under admin powershell
 (in other case will activate admin mode, but via subprocess launch in popup)
 
-So, to recap, 
+So, to recap,
 
 # If it is remote box, but you have initial ps shell
 
 ```ps
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Set-ExecutionPolicy Bypass -Scope Process -Force; 
+Set-ExecutionPolicy Bypass -Scope Process -Force;
 iex ((New-Object System.Net.WebClient).DownloadString('https://bit.ly/winfiles'))
 
 ```
@@ -48,7 +48,7 @@ the `./init.ps1` script will:
 
 For new windows box
 
-`./setup/windows.ps1` will configure box for privacy 
+`./setup/windows.ps1` will configure box for privacy
 
 Please review quickly before run to see if it matches your expectations
 
@@ -74,7 +74,7 @@ ConfigureRemotingForAnsible.ps1 , example:
 
 `powershell.exe -File ConfigureRemotingForAnsible.ps1 -SkipNetworkProfileCheck  -EnableCredSSP -CertValidityDays 3650`
 
-or 
+or
 
 ```ps
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -114,7 +114,7 @@ ansible windows -i hosts -m win_ping
 
 
 192.168.2.145 | SUCCESS => {
-    "changed": false, 
+    "changed": false,
     "ping": "pong"
 }
 
@@ -164,7 +164,7 @@ $session = New-PSSession -HostName 192.168.2.145 -UserName Administrator
 
 
 PS /home/slavko> Enter-PSSession $session
-[Administrator@192.168.2.145]: PS C:\Users\Administrator\Documents> 
+[Administrator@192.168.2.145]: PS C:\Users\Administrator\Documents>
 
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
@@ -173,7 +173,7 @@ d-----         1/2/2019   6:51 AM                WindowsPowerShell
 ```
 
 But if you do not need to use some specific powershell functionality,
-you also can do smth as simple as 
+you also can do smth as simple as
 
 `ssh administrator@192.168.2.145`
 
@@ -211,10 +211,10 @@ Since it's a Windows Service you can see it as "OpenSSH SSH Server" in services.
 Set-Service -Name sshd -StartupType 'Automatic'
 ```
 
-Remember that we SSH over port 22 so you'll have a firewall rule incoming on 22 at this point. 
+Remember that we SSH over port 22 so you'll have a firewall rule incoming on 22 at this point.
 SSH.  Windows.  Think twice to open any windows port to the world. I would always limit by ip.
 
-Now, 
+Now,
 
 ```
 ssh slavko@windows2016eval
@@ -227,3 +227,32 @@ slavko@MSEDGEWIN10 C:\Users\Slavko>
 ```
 
 We are set
+
+## Unsorted notes
+
+### Running console as system interactively
+
+```
+psexec.exe -i -s -d cmd.exe
+```
+
+### Running console as system in ConEmu
+
+Create launch item `Shells::cmd(System)`
+
+```
+cmd.exe -new_console:aA
+```
+
+You can always check who are you by invoking
+
+```
+echo %USERDOMAIN%\%USERNAME%
+```
+
+or in powershell
+
+```
+write-host $env:userdomain\$env:username
+```
+
