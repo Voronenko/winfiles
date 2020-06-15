@@ -90,6 +90,23 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 
 ```
 
+Depending on a software you will be installing with choco, on some rare situations you might also face
+
+Depending on your OS, you might also face
+
+https://support.microsoft.com/en-us/help/2842230/out-of-memory-error-on-a-computer-that-has-a-customized-maxmemorypersh
+
+also you might face limit  https://github.com/ansible/ansible/issues/39327
+
+which can be changed with additional override
+
+```ps1
+# 2048 4096 8192 this is the max mem in MB
+Set-Item -Path WSMan:\localhost\Shell\MaxMemoryPerShellMB -Value 2048
+Restart-Service -Name WinRM
+```
+
+
 # Confirming, that ansible setup is ready
 
 Dependency - python pywinrm package
