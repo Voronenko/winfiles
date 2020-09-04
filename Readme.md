@@ -293,11 +293,11 @@ Update-Module Pscx
 
 It has multiple functions, in particular ones
 
-```ps`
+```ps1
 Invoke-BatchFile "${env:ProgramFiles(x86)}\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
 ```
 PSCX also has an Import-VisualStudioVars function:
 
-```ps`
+```ps1
 Import-VisualStudioVars -VisualStudioVersion 2017
 ```
