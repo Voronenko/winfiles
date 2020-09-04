@@ -301,3 +301,14 @@ PSCX also has an Import-VisualStudioVars function:
 ```ps1
 Import-VisualStudioVars -VisualStudioVersion 2017
 ```
+
+in case of the issues, try workaround
+
+```ps1
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
+Register-PSRepository -Default -Verbose
+Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+
+Install-Module Pscx -AllowClobber
+```
