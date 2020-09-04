@@ -273,3 +273,31 @@ or in powershell
 write-host $env:userdomain\$env:username
 ```
 
+### Powershell extra tools
+
+https://github.com/Pscx/Pscx
+
+Pscx is hosted on the PowerShell Gallery. You can install Pscx with the following command:
+
+```ps1
+Install-Module Pscx -Scope CurrentUser
+```
+
+You may be prompted to trust the PSGallery. Respond with a 'y' (for yes) to proceed with the install.
+
+If you already have installed Pscx from the PowerShell Gallery, you can update Pscx with the command:
+
+```ps1
+Update-Module Pscx
+```
+
+It has multiple functions, in particular ones
+
+```ps`
+Invoke-BatchFile "${env:ProgramFiles(x86)}\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
+```
+PSCX also has an Import-VisualStudioVars function:
+
+```ps`
+Import-VisualStudioVars -VisualStudioVersion 2017
+```
