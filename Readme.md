@@ -312,3 +312,65 @@ Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
 Install-Module Pscx -AllowClobber
 ```
+
+# Updating root certificats
+
+Get last certificates pack
+
+```cmd
+certutil.exe -generateSSTFromWU roots.sst
+```
+
+now either update them wia powershell
+
+```
+$sstStore = ( Get-ChildItem -Path C:\roots.sst )
+$sstStore | Import-Certificate -CertStoreLocation Cert:\LocalMachine\Root
+```
+
+
+If you happen to have updroots.exe utility from  KB931125 (Update for Root Certificates) in your system,
+or orifinal rootsupd.exe (you can unpack updroots.exe via  rootsupd.exe /c /t: C:\PS\rootsupd )
+
+You can update root certs via elevated commandprompt.
+
+```cmd
+updroots.exe roots.sst
+```
+
+Note, that for all certificates are stored in SST files, like authroots.sst, delroot.sst, etc. 
+To delete/install a certificate, you can use the following commands:
+
+```cmd
+updroots.exe authroots.sst
+updroots.exe -d delroots.sst
+```
+
+
+There is another way to get the list of root certificates from Microsoft website. To do it, 
+download the file http://ctldl.windowsupdate.com/msdownload/update/v3/static/trustedr/en/authrootstl.cab (updated twice a month). 
+Using any archiver (or even Windows Explorer) unpack authrootstl.cab. It contains one file authroot.stl.
+
+
+YOu can install one using certutil.exe tool:
+
+```cmd
+certutil -addstore -f root authroot.stl
+
+root "Trusted Root Certification Authorities"
+CTL 0 added to store.
+CertUtil: -addstore command completed successfully.
+
+```
+
+You can also import certificates using the certificate management console (Trust Root Certification Authorities -> Certificates -> All Tasks -> Import). 
+Specify the path to your STL file with certificates.
+
+In the same way, you can download and install the list of the revoked (disallowed) certificates that have been removed from Root Certificate Program. 
+To do it, download disallowedcertstl.cab (http://ctldl.windowsupdate.com/msdownload/update/v3/static/trustedr/en/disallowedcertstl.cab), 
+unpack it and add to the Untrusted Certificates section using this command:
+
+```cmd
+certutil -addstore -f  disallowed disallowedcert.stl
+```
+
