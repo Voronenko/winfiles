@@ -8,6 +8,7 @@ $certlocation = "Cert:\LocalMachine\Root"
 
 Write-Host "Downloading $url to $output " -ForegroundColor "Yellow"
 
+[Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"
 (New-Object System.Net.WebClient).DownloadFile($url, $output)
 
@@ -20,6 +21,6 @@ Write-Host "Import-PfxCertificate –FilePath $PSScriptRoot\cacert.pfx Cert:\Loc
 Import-PfxCertificate –FilePath $PSScriptRoot\cacert.pfx $certlocation -Password (ConvertTo-SecureString -String "export" -Force –AsPlainText)
 
 Set-Location $certlocation
- 
+
 #Get the installed certificates in that location
 Get-ChildItem | Format-Table Subject, FriendlyName, Thumbprint -AutoSize
