@@ -7,7 +7,7 @@ It is recommended to install under admin powershell
 
 So, to recap,
 
-# If it is remote box, but you have initial ps shell
+## If it is remote box, but you have initial ps shell
 
 ```ps
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -21,7 +21,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://bit.ly/winfiles')
 Then proceed usually or unusually using cloned repo in `c:\batch\winfiles`
 
 
-# Some facts on your box
+## Some facts on your box
 
 Installed powershell version
 
@@ -37,14 +37,14 @@ Get box network addresses
 
 ```
 
-# init.ps1
+## init.ps1
 
 the `./init.ps1` script will:
 
 * Back up any existing winfiles in your powershell directory to ~/winfiles_old/
 * Create symlinks to the ps1 in ~/winfiles/ in your powershell directory
 
-# windows.ps1
+## windows.ps1
 
 For new windows box
 
@@ -52,7 +52,7 @@ For new windows box
 
 Please review quickly before run to see if it matches your expectations
 
-# software.ps1
+## software.ps1
 
 For new windows box
 
@@ -68,7 +68,7 @@ For new windows box
 * Install Python 2.7.9
 * Configure host for ASP.NET development
 
-# Configuring for ansible remote provisioning
+## Configuring for ansible remote provisioning
 
 ConfigureRemotingForAnsible.ps1 , example:
 
@@ -107,7 +107,7 @@ Restart-Service -Name WinRM
 ```
 
 
-# Confirming, that ansible setup is ready
+## Confirming, that ansible setup is ready
 
 Dependency - python pywinrm package
 ```
@@ -138,7 +138,7 @@ ansible windows -i hosts -m win_ping
 ```
 
 
-# Getting connection from linux up - option A - using powershell over ssh transport
+## Getting connection from linux up - option A - using powershell over ssh transport
 
 If for whatever reasons you want to connect interactively from linux box, things get more complicated.
 
@@ -195,7 +195,7 @@ you also can do smth as simple as
 `ssh administrator@192.168.2.145`
 
 
-# Getting connection from linux up - option B - using embedded SSH server
+## Getting connection from linux up - option B - using embedded SSH server
 
 ```ps1
 
@@ -313,7 +313,22 @@ Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 Install-Module Pscx -AllowClobber
 ```
 
-# Updating root certificats
+
+### Summary on loading VisualStudio environment
+
+`Import-VisualStudioVars` is a handy function available in Pscx module https://github.com/Pscx/Pscx
+However, it has dependency on a VSSetup module https://github.com/microsoft/vssetup.powershell
+
+```ps1
+
+ Install-Module Pscx -AllowClobber
+ Install-Module VSSetup -Scope CurrentUser
+
+```
+
+once installed, you can 
+
+## Updating root certificats
 
 Get last certificates pack
 
